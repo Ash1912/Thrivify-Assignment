@@ -38,6 +38,8 @@ habit-tracker/
 ├── ai-service/              # Flask AI Service
 │   ├── app.py
 │   ├── recommendation.py
+|   ├── static/
+│   |    └── favicon.ico
 │   ├── requirements.txt
 ├── README.md
 ```
