@@ -1,34 +1,56 @@
-const Habit = require('../models/Habit');
+const db = require('../models/db');
 
-exports.getHabits = (req, res) => {
-  const userId = req.query.user_id;  // Get user ID from query params
-  Habit.findByUserId(userId, (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(results);  // Return the list of habits
-  });
+// Fetch habits
+exports.getHabits = async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT * FROM Habits');
+    res.json(rows);
+  } catch (error) {
+    console.error('Error fetching habits:', error.message);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 };
 
-exports.createHabit = (req, res) => {
-  const habitData = req.body;  // Habit data is passed in the request body
-  Habit.create(habitData, (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.status(201).json({ message: 'Habit created', habit_id: results.insertId });
-  });
+// Create a new habit
+exports.createHabit = async (req, res) => {
+  try {
+    const { user_id, habit_title, frequency } = req.body;
+    console.log("Request body:", req.body); // Debug log
+
+    if (!user_id || !habit_title || !frequency) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
+
+    const query = `
+      INSERT INTO Habits (user_id, habit_title, frequency, start_date)
+      VALUES (?, ?, ?, CURDATE())
+    `;
+    await db.query(query, [user_id, habit_title, frequency]);
+
+    res.status(201).json({ message: 'Habit created successfully' });
+  } catch (error) {
+    console.error('Error creating habit:', error.message);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 };
 
-exports.updateHabit = (req, res) => {
-  const habitId = req.params.id;
-  const { status } = req.body;  // Status (completed, in-progress, etc.)
-  Habit.update(habitId, status, (err) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: 'Habit updated' });
-  });
+exports.updateHabit = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    await db.query("UPDATE Habits SET status = ? WHERE habit_id = ?", [status, id]);
+    res.send("Habit updated successfully");
+  } catch (err) {
+    res.status(500).send("Error updating habit");
+  }
 };
 
-exports.deleteHabit = (req, res) => {
-  const habitId = req.params.id;
-  Habit.delete(habitId, (err) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: 'Habit deleted' });
-  });
+exports.deleteHabit = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await db.query("DELETE FROM Habits WHERE habit_id = ?", [id]);
+    res.send("Habit deleted successfully");
+  } catch (err) {
+    res.status(500).send("Error deleting habit");
+  }
 };

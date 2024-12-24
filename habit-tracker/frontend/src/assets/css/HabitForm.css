@@ -1,0 +1,64 @@
+/* Style for the Habit Form Container */
+.habit-form {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f7fc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Heading Style */
+  .habit-form h2 {
+    text-align: center;
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  
+  /* Input Fields and Select Box */
+  .habit-form input,
+  .habit-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+  }
+  
+  .habit-form input:focus,
+  .habit-form select:focus {
+    border-color: #4d90fe;
+    outline: none;
+  }
+  
+  /* Button Style */
+  .habit-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4d90fe;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .habit-form button:hover {
+    background-color: #3577d2;
+  }
+  
+  /* Validation Message */
+  .habit-form .error {
+    color: #ff4d4d;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  

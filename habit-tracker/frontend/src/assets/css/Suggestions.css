@@ -1,0 +1,51 @@
+/* Suggestions.css */
+.suggestions-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .suggestions-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .suggestions-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+  }
+  
+  .suggestions-table th,
+  .suggestions-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .suggestions-table th {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .suggestions-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .suggestions-table tr:hover {
+    background-color: #ddd;
+  }
+  
+  .suggestions-table th {
+    text-align: center;
+  }
+  
+  .suggestions-table td {
+    text-align: left;
+  }
+  

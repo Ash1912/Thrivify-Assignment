@@ -1,0 +1,70 @@
+/* General Styling for the Habit List */
+.habit-list {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Heading for the Habit List */
+  .habit-list h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Styling for the Habit List */
+  .habit-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Styling for each Habit item */
+  .habit-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Add hover effect for each list item */
+  .habit-list li:hover {
+    background-color: #f0f8ff;
+    transform: translateY(-3px);
+  }
+  
+  /* Styling for Habit Title */
+  .habit-title {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Styling for Habit Frequency */
+  .habit-frequency {
+    font-style: italic;
+    color: #888;
+  }
+  
+  /* Responsive Design for smaller screens */
+  @media (max-width: 768px) {
+    .habit-list {
+      padding: 15px;
+    }
+  
+    .habit-list h2 {
+      font-size: 1.5rem;
+    }
+  
+    .habit-list li {
+      font-size: 1rem;
+    }
+  }
+  

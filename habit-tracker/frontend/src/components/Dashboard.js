@@ -1,29 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import HabitList from './HabitList';
-import Suggestions from './Suggestions';
-// import HabitForm from './HabitForm';
-import { getHabits, getSuggestions, } from '../services/api';
+import React, { useState, useEffect } from "react";
+import HabitList from "./HabitList";
+import HabitForm from "./HabitForm";
+import Suggestions from "./Suggestions";
+import { getHabits, createHabit } from "../services/api";
+import "../assets/css/Dashboard.css"; // Import CSS
 
 const Dashboard = () => {
   const [habits, setHabits] = useState([]);
-  const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
-    getHabits().then(setHabits);
-    getSuggestions().then(setSuggestions);
+    fetchHabits();
   }, []);
 
-//   const handleAddHabit = (habit) => {
-//     createHabit(habit).then((newHabit) => setHabits([...habits, newHabit]));
-//   };
+  const fetchHabits = async () => {
+    try {
+      const data = await getHabits();
+      setHabits(data);
+    } catch (error) {
+      console.error("Error fetching habits:", error.message);
+    }
+  };
+
+  const handleAddHabit = async (habit) => {
+    try {
+      await createHabit(habit);
+      fetchHabits();
+    } catch (error) {
+      console.error("Error adding habit:", error.message);
+    }
+  };
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>Track and improve your habits efficiently.</p>
-      {/* <HabitForm onSubmit={handleAddHabit} /> */}
+    <div className="dashboard-container">
+      <h1 className="dashboard-title">Habit Tracker</h1>
+      <HabitForm onAddHabit={handleAddHabit} />
       <HabitList habits={habits} />
-      <Suggestions suggestions={suggestions} />
+      <Suggestions />
     </div>
   );
 };
